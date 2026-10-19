@@ -47,11 +47,15 @@ car_data = {
 search_criteria = (2017, 1.6, 36000)
 minimal_year, minimal_engine_volume, maximum_price = search_criteria
 
-suitable_cars = []
-for car_key, car_value in car_data.items():
-    color, year, engine_volume, car_type, price = car_value
-    if year >= minimal_year and engine_volume >= minimal_engine_volume and price <= maximum_price:
-        suitable_cars.append((car_key, car_value))
+suitable_cars = [(car_key, car_value)
+                 for car_key, car_value in car_data.items()
+                 if car_value[1] >= minimal_year and car_value[2] >= minimal_engine_volume
+                 and car_value[4] <= maximum_price]
+
+# for car_key, car_value in car_data.items():
+#     color, year, engine_volume, car_type, price = car_value
+#     if year >= minimal_year and engine_volume >= minimal_engine_volume and price <= maximum_price:
+#         suitable_cars.append((car_key, car_value))
 
 sorted_cars = sorted(suitable_cars, key=lambda x: x[1][4])
 
