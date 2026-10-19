@@ -60,4 +60,6 @@ suitable_cars = [(car_key, car_value)
 sorted_cars = sorted(suitable_cars, key=lambda x: x[1][4])
 
 five_cars = sorted_cars[:5]
-print(five_cars)
+
+for num, (car_name, (color, year, engine_volume, car_type, price)) in enumerate(five_cars, 1):
+    print(f"{num}. {car_name}:\nYear: {year}. Engine volume: {engine_volume}. Price: {price}.\n")
