@@ -28,14 +28,16 @@ people_records[1], people_records[5] = people_records[5], people_records[1]
 for num, (first_name, last_name, age, work, city) in enumerate(people_records):
     print(f"Index {num}. First Name: {first_name} | Last Name: {last_name} | Age: {age} | Work: {work} | City: {city}\n")
 
-users_indexes = [6, 10, 13]
+users_indexes = [6, 9, 13]
 INDEX_AGE = 2
-under_30 = [user_index
-            for user_index in users_indexes
-            if people_records[user_index][INDEX_AGE] < 30]
+age_checks = [people_records[user_index][INDEX_AGE] >= 30
+            for user_index in users_indexes]
 
-all_passed_the_inspection = len(under_30) == 0
+all_passed_the_inspection = all(age_checks)
+passed_count = age_checks.count(True)
+total_count = len(age_checks)
+
 if all_passed_the_inspection:
-    print(f"{all_passed_the_inspection}. All users are 30 or older")
+    print(f"{all_passed_the_inspection}. All passed! {passed_count} of {total_count} users")
 else:
-    print(f"{all_passed_the_inspection}. Number of users under 30: {len(under_30)}. Indexes: {under_30}\n")
+    print(f"{all_passed_the_inspection}. Not all passed! {passed_count} of {total_count} users")
