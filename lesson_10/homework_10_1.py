@@ -3,29 +3,28 @@ import math
 
 
 class Employee:
-    def __init__(self, name_param, salary_param):
-        self.name = name_param
-        self.salary = salary_param
+    def __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
 
 class Manager(Employee):
-        def __init__(self, name_param, salary_param, department_param):
-            Employee.__init__(self, name_param, salary_param)
-            self.department = department_param
+        def __init__(self, department, **kwargs):
+            super().__init__(**kwargs)
+            self.department = department
 
 class Developer(Employee):
-    def __init__(self, name_param, salary_param, programming_language_param):
-        Employee.__init__(self, name_param, salary_param)
-        self.programming_language = programming_language_param
+    def __init__(self, programming_language, **kwargs):
+        super().__init__(**kwargs)
+        self.programming_language = programming_language
 
 class TeamLead(Manager, Developer):
-    def __init__(self, name_param, salary_param,  department_param, programming_language_param, team_size_param):
-        Manager.__init__(self, name_param, salary_param, department_param)
-        Developer.__init__(self, name_param, salary_param, programming_language_param)
-        self.team_size = team_size_param
+    def __init__(self, team_size, **kwargs):
+        super().__init__(**kwargs)
+        self.team_size = team_size
 
-
-
-lead = TeamLead("Ann", 5000, "IT", "Python", 5)
+lead = TeamLead(name="Ann", salary=5000, department="IT",
+                programming_language="Python", team_size=5)
+print(lead.name, lead.department, lead.programming_language, lead.team_size)
 
 if hasattr(lead, "department") and hasattr(lead, "programming_language"):
     print("Test passed")
